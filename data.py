@@ -1,10 +1,6 @@
 """
 MarketPulse · data.py v9
-Correções:
-- Bug índices repetindo: cada ticker buscado em URL separada, valor validado
-- Notícias filtradas por categoria funcionando
-- Dividendos dinâmicos via Google Finance
-- Frequências ajustadas: índices 1min, cripto 5min, ações/FIIs/ETFs 30min
+
 """
 import datetime, pytz, feedparser, requests, threading, time, random, re
 from email.utils import parsedate_to_datetime
@@ -105,8 +101,6 @@ def _limpar(txt):
 
 # ══════════════════════════════════════════════════════════════════════════════
 # GOOGLE FINANCE — scraping corrigido
-# Bug anterior: todos pegavam o mesmo atributo data-last-price da página
-# Fix: extrai preço e variação APENAS dos elementos corretos para aquele ticker
 # ══════════════════════════════════════════════════════════════════════════════
 def _gf_buscar(ticker, bolsa):
     """
